@@ -1,0 +1,110 @@
+<!--
+Copyright 2016 International Business Machines Corporation ("IBM")
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+	integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+	crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+	integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+	crossorigin="anonymous"></script>
+
+<title>ThinkInfinity</title>
+<link rel="stylesheet" type="text/css" href="stylesheets/style.css" />
+<% include ../views/menu %>
+</head>
+
+<body>
+
+	<!-- JAVASCRIPT to clear search text when the field is clicked -->
+	<script type="text/javascript">
+     
+     window.onload = function(){ 
+         //Get search button
+         var searchbutton = document.getElementById("search");
+         //Add listener to search button
+         if(searchbutton.addEventListener){
+             searchbutton.addEventListener("click", function() {
+                 if (searchbutton.value == 'Search for Creativi-Toys'){//Customize this text string to whatever you want
+                     searchbutton.value = '';
+                 }
+             });
+         }
+         
+          //Get submit button
+         var submitbutton = document.getElementById("submit");
+         //Add listener to submit button
+         if(submitbutton.addEventListener){
+             submitbutton.addEventListener("click", function() {
+                 if (searchbutton.value == 'Search for Creativi-Toys'){//Customize this text string to whatever you want
+                     searchbutton.value = '';
+                 }
+             });
+         }
+     }
+    </script>
+
+	<div class="container-fluid">
+
+		<div class="row header match-my-cols clearfix">
+			<div class="col-sm-2">
+				<img class="img-responsive" src="../images/hexagon think2.png" />
+			</div>
+		<div class="col-sm-6">
+				<form class="form-horizontal" id="searchbox" method="post" action="/">
+					<div class="input-group">
+						<input id="search" autocomplete="off" type="text" class="form-control" name="q" placeholder="Search for Creativi-Toys"> 
+						<span class="input-group-btn">
+							<button id="submit" class="btn btn-secondary" type="submit">&nbsp;</button>
+						</span>
+					</div>
+				</form>
+			</div>
+		</div>
+
+		<div class="row match-my-cols">
+			<% var i=0; %> 
+			<% for(toy in toyList) { %>
+
+			<div class="col-sm-2">
+				<a href="/toy/<%= encodeURIComponent(toyList[toy]._id) %>"><img class="img-responsive" src="data:image/png;base64,<%= toyList[toy].picture %>"></a> 
+				<a class="text" href="/toy/<%= encodeURIComponent(toyList[toy]._id) %>"><%= toyList[toy]._id %></a>
+				<p><%= toyList[toy].overview %></p>
+			</div>
+			<% i++; %> 
+			<% if (i == 6) { %>
+			<div class="clearfix hidden-sm-up"></div>
+			<% i = 0 %> 
+			<% } %> 
+			<% } %>
+		</div>
+	</div>
+
+</body>
+</html>

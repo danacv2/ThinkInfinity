@@ -1,0 +1,110 @@
+<!--
+Copyright 2016 International Business Machines Corporation ("IBM")
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+	integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+	crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+	integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+	crossorigin="anonymous"></script>
+
+
+<!--edit the title for your own name-->
+<title><%= toyDetails._id %></title>
+<link rel='stylesheet' href='/stylesheets/style.css' />
+<% include ../views/menu %>
+</head>
+
+<body>
+
+	<div class="container-fluid">
+
+		<div class="row header match-my-cols clearfix">
+			<div class="col-sm-2">
+				<img class="img-responsive" src="data:image/png;base64,<%= toyDetails.picture %>" />
+			</div>
+		</div>
+
+		<h1><%= toyDetails._id %></h1>
+
+		<p><b>Overview:</b> <%= toyDetails.overview %></p>
+		<% if(toyDetails.whenMessageReceived) { %>
+		<p><b>When Message Is Received:</b> <br /> 
+		<% for(var i=0; i<toyDetails.whenMessageReceived.length; i++) { %>
+			<I><%= toyDetails.whenMessageReceived[i].action %></I> - <%= toyDetails.whenMessageReceived[i].actionDesc %><br />
+			<% } %>
+		</p>
+		<% } %> 
+		<% if(toyDetails.sendMessageWhen) { %>
+		<p><b>Send Message When:</b> <br /> 
+		<% for(var j=0; j<toyDetails.sendMessageWhen.length; j++) { %>
+			<I><%= toyDetails.sendMessageWhen[j].reactTo %></I> - <%= toyDetails.sendMessageWhen[j].reactToDesc %><br />
+			<% } %>
+		</p>
+		<% } %> <% if(toyDetails.special) { %>
+		<p><b>Special:</b> <br /> 
+		<% for(var l=0; l<toyDetails.special.length; l++) { %> 
+			<I><%= toyDetails.special[l].specialAct %></I> - <%= toyDetails.special[l].specialDesc %><br />
+		<% } %>
+		</p>
+		<% } %> 
+		<% if(toyDetails.properties) { %>
+		<p><b>Properties:</b> <br /> 
+		<% for(var k=0; k<toyDetails.properties.length; k++) { %>
+			<I><%= toyDetails.properties[k].property %></I> - <%= toyDetails.properties[k].propertyDesc %> (Default: <%= toyDetails.properties[k].propertyDefault %>)<br />
+		<% } %>
+		</p>
+		<% } %> <% if(toyDetails.notes) { %>
+		<p><b>Notes:</b> <%= toyDetails.notes %></p>
+		<% } %> 
+		<p>
+		<% if(toyDetails.supportsActors) {%>
+			<b>Supports Actor Connections</b><br />
+		<% } %> 
+		<% if(toyDetails.supportsLocators) { %>
+			<b>Supports Locator Connections</b><br />
+		<% } %> 
+		<% if(toyDetails.supportsPaths) { %>
+			<b>Supports Path Connections</b><br />
+		<% } %> 
+		<% if(toyDetails.supportsTeams) { %>
+		<b>Supports Team Connections</b><br />
+		<% } %> 
+		</p>
+		<br />
+
+		<div class="embed-responsive embed-responsive-16by9">
+			<iframe class="embed-responsive-item" src="<%= toyDetails.video %>" allowfullscreen></iframe>
+		</div>
+
+	</div>
+	
+</body>
+</html>

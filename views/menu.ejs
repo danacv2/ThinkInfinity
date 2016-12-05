@@ -1,0 +1,75 @@
+<!--
+Copyright 2016 International Business Machines Corporation ("IBM")
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!--  Needed for dropdown menu -->
+<script src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+	integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+	crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+	integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+	crossorigin="anonymous"></script>
+
+
+<!--edit the title for your own name-->
+<title>Navigation Menu</title>
+<link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+	<div class="container-fluid">
+
+		<div class="btn-group" role="group" aria-label="...">
+			<button type="button" class="btn btn-link menu-button" onclick="window.location.href='/'">Home</button>
+			<button type="button" class="btn btn-link menu-button" onclick="history.back();">Back</button>
+			<button type="button" class="btn btn-link menu-button" onclick="window.location.href='/overview'">Overview</button>
+			<div class="dropdown">
+				<button type="button" class="btn btn-link menu-button dropdown-toggle" onclick="translate()" data-toggle="dropdown">Translate</button>
+				<div class="dropdown-content">
+					<form id="changelanguage" method="post" action="">
+						<select class="custom-select" name="language" onchange="this.form.submit()">
+							<option selected>Choose Language</option>
+							<option value="en">English</option>
+							<option value="ar">Arabic</option>
+							<option value="pt-BR">Brazilian Portuguese</option>
+							<option value="fr">French</option>
+							<option value="de">German</option>
+							<option value="it">Italian</option>
+							<option value="es">Spanish</option>
+						</select>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
