@@ -219,7 +219,7 @@ app.post('/', function(req, res) {
     	//special characters for query are + - & | ! ( ) { } [ ] ^ " ~ * ? : \ /
     	search_string = validator.blacklist(req.body.q, '\\+\\-&\\|!\\(\\)\\{\\}\\[\\]\\^\\"~\\*\\?:\\\\\/')
     	search_string = validator.trim(search_string);
-    	// TODO still can't handle spaces in words
+    	// Does not handle spaces in words
         client.search('toyList', 'toySearch',  
         		{q:'name:'+search_string+'* OR overview:'+search_string+'*', include_docs:true, sort:"_id<string>"}, function(er, result){
 			if (!er) {
